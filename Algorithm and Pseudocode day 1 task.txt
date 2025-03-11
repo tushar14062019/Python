@@ -1,0 +1,755 @@
+1.Student Grade Calculator
+
+#Algorithm
+-Start
+
+-Input assignment score, midterm exam score, and final exam score
+
+-Calculate Weighted Average:
+ Final Grade = (Assignment Score * 0.30) + (Midterm Score * 0.30) + (Final Exam Score * 0.40)
+
+-Determine Pass/Fail Status:
+ If Final Grade >= 60: Pass
+ Else: Fail
+
+-Display the final grade and pass/fail status
+
+-End
+
+#Pseudocode
+START
+DISPLAY "enter assignment score(out of 100):"
+INPUT assignmentscore
+ 
+DISPLAY "enter assignment exam score(out of 100)"
+INPUT midtermscore
+ 
+DISPLAY "enter final exam score(out of 100)"
+INPUT finalscore
+
+SET finalgrade=(assignmentscore*0.30)+(midtermscore*0.30)+(finalexamscore*0.40)
+IF finalgrade>=60 THEN
+ SET status="pass"
+ELSE
+ SET status="fail"
+ENDIF
+
+ DISPLAY"final grade:",finalgrade
+ DISPLAY"STATUS:",status
+END
+
+2.ATM BANKING SYSTEM
+
+#Algorithm
+-Start
+
+-Set a predefined PIN and initial balance
+
+-Authenticate User:
+ Prompt user to enter a PIN
+ If incorrect, allow limited retries (e.g., 3 attempts); otherwise, exit
+
+-Display Menu Options:
+ Check Balance
+ Deposit Money
+ Withdraw Money
+ Exit
+
+-Process User Selection:
+
+ If Check Balance, display the current balance
+
+ If Deposit Money, prompt user for deposit amount, update balance, and provide receipt
+
+ If Withdraw Money, check if sufficient balance exists:
+
+ If Yes, deduct amount, update balance, and provide receipt
+
+ If No, show error message
+
+ If Exit, terminate the program
+
+-Loop until the user chooses to exit
+
+ End
+
+#Pseudocode
+START 
+DISPLAY"enter your pin:"
+INPUT userpin
+IF userpin is incorrect THEN 
+DISPLAY "invalid pin try again."
+EXIT
+ENDIF
+SET balance=1000
+REPEAT
+DISPLAY"ATM menu:"
+DISPLAY"1.check balance"
+DISPLAY"2.deposit money"
+DISPLAY"3.withdraw money"
+DISPLAY"4.exit"
+DISPLAY"choose an option:"
+INPUT choice
+
+IF choice=1 THEN
+DISPLAY "your balance is",balance
+ELSE IF choice=2 THEN
+DISPLAY"enter amount to deposit:"
+INPUT depositAmount
+  SET balance = balance + depositAmount
+  DISPLAY "Deposit successful. New balance: ", balance
+  ELSE IF choice = 3 THEN
+  DISPLAY "Enter amount to withdraw:"
+  INPUT withdrawAmount
+  IF withdrawAmount > balance THEN
+  DISPLAY "Insufficient funds!"
+ELSE
+ SET balance = balance - withdrawAmount
+DISPLAY "Withdrawal successful. New balance: ", balance
+ENDIF
+ELSE IF choice = 4 THEN
+DISPLAY "Thank you for using our ATM."
+EXIT
+ELSE
+DISPLAY "Invalid choice. Please try again."
+ ENDIF
+    UNTIL choice = 4
+END
+
+3. Inventory Management System
+
+#Algorithm
+-Start
+
+-Initialize an empty inventory (dictionary or list of dictionaries)
+
+-Display Menu Options:
+
+Add New Product
+
+Update Product Information
+
+Remove Product
+
+Search Product (by ID or Name)
+
+Display Inventory
+
+Show Low Stock Items
+
+Generate Inventory Report
+
+Exit
+
+-Process User Selection:
+
+If Add New Product:
+
+Prompt for product details (ID, Name, Price, Quantity)
+
+Ensure ID is unique before adding
+
+
+If Update Product:
+
+Search by ID, then update price or quantity
+
+
+If Remove Product:
+
+Search by ID and delete from inventory
+
+
+If Search Product:
+
+Allow search by ID or Name and display details
+
+
+If Display Inventory:
+
+Show all products with details
+
+
+If Low Stock Items:
+
+Show items with quantity below a threshold (e.g., <5)
+
+
+If Generate Report:
+
+Display inventory summary
+
+
+If Exit, terminate the program
+
+-Loop until the user chooses to exit
+
+-End
+
+#Pseudocode
+START
+
+DECLARE inventory as a list
+
+FUNCTION addProduct(id, name, price, quantity)
+    CREATE product as dictionary with keys (id, name, price, quantity)
+    ADD product to inventory
+    DISPLAY "Product added successfully."
+
+FUNCTION updateProduct(id, new_price, new_quantity)
+    FOR each product in inventory
+        IF product.id == id THEN
+            SET product.price = new_price
+            SET product.quantity = new_quantity
+            DISPLAY "Product updated successfully."
+            RETURN
+    DISPLAY "Product not found."
+
+FUNCTION removeProduct(id)
+    FOR each product in inventory
+        IF product.id == id THEN
+            REMOVE product from inventory
+            DISPLAY "Product removed successfully."
+            RETURN
+    DISPLAY "Product not found."
+
+FUNCTION searchProduct(id_or_name)
+    FOR each product in inventory
+        IF product.id == id_or_name OR product.name == id_or_name THEN
+            DISPLAY product details
+            RETURN
+    DISPLAY "Product not found."
+
+FUNCTION displayInventory()
+    IF inventory is empty THEN
+        DISPLAY "Inventory is empty."
+    ELSE
+        FOR each product in inventory
+            DISPLAY product details
+
+FUNCTION trackLowStock(threshold)
+    FOR each product in inventory
+        IF product.quantity < threshold THEN
+            DISPLAY "Low stock:", product details
+
+FUNCTION generateReport()
+    DISPLAY "Inventory Report:"
+    DISPLAY "Total Products:", COUNT(inventory)
+    DISPLAY all product details
+
+LOOP
+    DISPLAY "1. Add Product"
+    DISPLAY "2. Update Product"
+    DISPLAY "3. Remove Product"
+    DISPLAY "4. Search Product"
+    DISPLAY "5. Display Inventory"
+    DISPLAY "6. Track Low Stock"
+    DISPLAY "7. Generate Report"
+    DISPLAY "8. Exit"
+    DISPLAY "Enter your choice: "
+    INPUT choice
+
+    SWITCH(choice)
+        CASE 1: CALL addProduct()
+        CASE 2: CALL updateProduct()
+        CASE 3: CALL removeProduct()
+        CASE 4: CALL searchProduct()
+        CASE 5: CALL displayInventory()
+        CASE 6: CALL trackLowStock()
+        CASE 7: CALL generateReport()
+        CASE 8: EXIT program
+        DEFAULT: DISPLAY "Invalid choice, try again."
+
+END
+
+4. Prime Number Checker
+
+#Algorithm
+-Start
+
+-Prompt the user to enter a number
+
+-Validate input: Ensure it is a positive integer
+
+-Check for primality:
+
+If the number is 1, it is not prime
+
+If the number is 2 or 3, it is prime
+
+If the number is even or divisible by 3, it is not prime
+
+Otherwise, check divisibility from 5 to √N, skipping even numbers
+
+-Display the result with an explanation
+
+-Ask user if they want to check another number
+
+-Repeat or exit based on user choice
+
+-End
+
+#Pseudocode
+START
+
+FUNCTION isPrime(number)
+    IF number <= 1 THEN
+        RETURN false
+    IF number is 2 THEN
+        RETURN true
+    FOR i FROM 2 TO square root of number DO
+        IF number MOD i == 0 THEN
+            RETURN false
+    RETURN true
+
+LOOP
+    DISPLAY "Enter a positive integer: "
+    INPUT number
+
+    IF number is not a positive integer THEN
+        DISPLAY "Invalid input. Please enter a positive integer."
+        CONTINUE
+
+    IF isPrime(number) THEN
+        DISPLAY number, "is a prime number."
+    ELSE
+        DISPLAY number, "is not a prime number."
+
+    DISPLAY "Do you want to check another number? (yes/no)"
+    INPUT choice
+    IF choice is "no" THEN
+        EXIT LOOP
+
+END
+
+5. Temperature Conversion Tool
+
+#Algorithm
+- Start
+
+- Prompt the user to enter a temperature value
+
+-Prompt the user to select the source unit (Celsius, Fahrenheit, or Kelvin)
+
+- Prompt the user to select the target unit (Celsius, Fahrenheit, or Kelvin)
+
+- Perform the appropriate conversion using the correct formula:
+
+Celsius to Fahrenheit: 
+
+Celsius to Kelvin: 
+
+Fahrenheit to Celsius: 
+
+Fahrenheit to Kelvin: 
+
+Kelvin to Celsius: 
+
+Kelvin to Fahrenheit: 
+
+- Display the converted temperature with the appropriate unit
+
+- Ask the user if they want to perform another conversion
+
+If yes, repeat from step 2
+
+If no, exit the program
+
+-End
+
+
+#Pseudocode
+START
+
+FUNCTION convertTemperature(value, sourceUnit, targetUnit)
+    IF sourceUnit == "C" AND targetUnit == "F" THEN
+        RETURN (value * 9/5) + 32
+    ELSE IF sourceUnit == "C" AND targetUnit == "K" THEN
+        RETURN value + 273.15
+    ELSE IF sourceUnit == "F" AND targetUnit == "C" THEN
+        RETURN (value - 32) * 5/9
+    ELSE IF sourceUnit == "F" AND targetUnit == "K" THEN
+        RETURN (value - 32) * 5/9 + 273.15
+    ELSE IF sourceUnit == "K" AND targetUnit == "C" THEN
+        RETURN value - 273.15
+    ELSE IF sourceUnit == "K" AND targetUnit == "F" THEN
+        RETURN (value - 273.15) * 9/5 + 32
+    ELSE
+        RETURN value  // No conversion needed if units are the same
+
+LOOP
+    DISPLAY "Enter temperature value: "
+    INPUT value
+
+    DISPLAY "Enter source unit (C, F, K): "
+    INPUT sourceUnit
+
+    DISPLAY "Enter target unit (C, F, K): "
+    INPUT targetUnit
+
+    convertedValue = convertTemperature(value, sourceUnit, targetUnit)
+    DISPLAY "Converted Temperature: ", convertedValue, targetUnit
+
+    DISPLAY "Do you want to convert another temperature? (yes/no)"
+    INPUT choice
+    IF choice == "no" THEN
+        EXIT LOOP
+
+END
+
+6. Library Book Management System
+
+#Algorithm
+-Start
+
+-Initialize the database for books and members
+
+- Display Menu Options:
+
+Add a new book
+
+Remove a book
+
+Register a new member
+
+Search for a book (by title, author, or ISBN)
+
+Checkout a book (update status and set due date)
+
+Return a book (update status and check for late fees)
+
+Generate a report for overdue books
+
+Exit
+
+- Process User Selection:
+
+If Add a Book:
+
+Prompt for title, author, ISBN, and availability status
+
+Store book details in the database
+
+
+If Remove a Book:
+
+Search by ISBN and delete from the database
+
+
+If Register a Member:
+
+Prompt for member details (name, ID, contact) and store in the database
+
+
+If Search for a Book:
+
+Allow search by title, author, or ISBN and display details
+
+
+If Checkout a Book:
+
+Verify availability
+
+Assign a due date
+
+Update book status to "Checked Out"
+
+
+If Return a Book:
+
+Check due date
+
+If overdue, calculate and display late fee
+
+Update book status to "Available"
+
+
+If Generate Overdue Report:
+
+List all overdue books and associated members
+
+
+If Exit, terminate the program
+
+- Loop until the user chooses to exit
+
+-End
+
+#Pseudocode
+  START
+
+DEFINE Book class:
+    Attributes: title, author, ISBN, status (Available/Checked Out)
+
+DEFINE Member class:
+    Attributes: name, member_id, borrowed_books (list)
+
+DEFINE Library class:
+    Attributes: books (list), members (list)
+    
+    FUNCTION add_book(title, author, ISBN):
+        Create new Book object with status "Available"
+        Add to books list
+
+    FUNCTION remove_book(ISBN):
+        Find book by ISBN
+        IF found THEN remove from books list
+
+    FUNCTION register_member(name, member_id):
+        Create new Member object
+        Add to members list
+
+    FUNCTION checkout_book(member_id, ISBN):
+        Find book and member
+        IF book is available THEN
+            Change status to "Checked Out"
+            Add book to member's borrowed_books list
+        ELSE
+            DISPLAY "Book not available"
+
+    FUNCTION return_book(member_id, ISBN):
+        Find member and book
+        IF book is in member's borrowed_books THEN
+            Change status to "Available"
+            Remove book from member's borrowed_books list
+        ELSE
+            DISPLAY "Book not checked out"
+
+    FUNCTION search_book(query):
+        Search books by title, author, or ISBN
+        DISPLAY matching results
+
+    FUNCTION generate_overdue_report():
+        CHECK due dates and list overdue books
+
+LOOP
+    DISPLAY menu: Add Book, Remove Book, Register Member, Checkout, Return, Search, Overdue Report, Exit
+    INPUT choice
+    EXECUTE corresponding function based on choice
+    IF choice == "Exit" THEN EXIT LOOP
+
+END
+
+7. Fibonacci Sequence Generator
+
+#Algorithm
+- Start
+
+-Prompt the user to enter the number of terms (N)
+
+- Validate input: Ensure it is a positive integer greater than 0
+
+- Initialize first two terms:
+
+fib1 = 0
+
+fib2 = 1
+
+- Generate Fibonacci sequence:
+
+If N = 1, print [0]
+
+If N = 2, print [0, 1]
+
+Otherwise, generate the sequence up to N terms using:
+
+next_term = fib1 + fib2
+
+Update fib1 and fib2
+
+- Display the sequence in a formatted way
+
+- Ask the user if they want to save the sequence to a file
+
+If yes, write the sequence to a file
+
+-Ask the user if they want to generate another sequence
+
+If yes, repeat from step 2
+
+If no, exit the program
+
+-End
+
+#Pseudocode
+START
+
+FUNCTION generate_fibonacci(n):
+    IF n <= 0 THEN
+        DISPLAY "Enter a positive integer"
+        RETURN
+    ELSE IF n == 1 THEN
+        RETURN [0]
+    ELSE IF n == 2 THEN
+        RETURN [0, 1]
+
+    INITIALIZE sequence = [0, 1]
+    FOR i FROM 2 TO n-1:
+        NEXT_TERM = sequence[i-1] + sequence[i-2]
+        APPEND NEXT_TERM to sequence
+
+    RETURN sequence
+
+FUNCTION save_to_file(sequence):
+    OPEN "fibonacci.txt" in write mode
+    WRITE sequence to file
+    CLOSE file
+
+LOOP
+    DISPLAY "Enter the number of Fibonacci terms to generate:"
+    INPUT n
+    VALIDATE n is a positive integer
+    CALL generate_fibonacci(n) → result
+    DISPLAY result
+
+    DISPLAY "Do you want to save the sequence to a file? (yes/no)"
+    INPUT choice
+    IF choice == "yes" THEN
+        CALL save_to_file(result)
+        DISPLAY "Sequence saved successfully"
+
+    DISPLAY "Do you want to generate another sequence? (yes/no)"
+    INPUT repeat
+    IF repeat == "no" THEN EXIT LOOP
+
+END
+
+8. Calendar Event Scheduler
+
+#Algorithm
+-Start
+
+-Initialize an empty data structure to store events (e.g., a dictionary or list)
+
+- Display Menu Options:
+
+Add a new event
+
+View events (by day, week, or month)
+
+Search for an event (by title or description)
+
+Modify an event
+
+Delete an event
+
+Set event reminders
+
+Check for schedule conflicts
+
+Exit
+
+- Process User Selection:
+
+If Add an Event:
+
+Prompt for title, date, time, and description
+
+Validate date and time format
+
+Check for schedule conflicts before adding
+
+Store the event in the data structure
+
+
+If View Events:
+
+Ask the user to view by day, week, or month
+
+Display all matching events in a readable format
+
+
+If Search for an Event:
+
+Prompt for title or description
+
+Display matching events
+
+
+If Modify an Event:
+
+Search for the event
+
+Allow the user to update title, date, time, or description
+
+Validate new date and time before saving
+
+
+If Delete an Event:
+
+Search for the event
+
+Confirm deletion before removing it
+
+
+If Set Reminders:
+
+Allow the user to set reminders before the event (e.g., 1 hour, 1 day)
+
+Store the reminder information
+
+
+If Check for Schedule Conflicts:
+
+Compare event dates and times to detect overlapping events
+
+Notify the user of conflicts and suggest resolutions
+
+
+If Exit, terminate the program
+
+-Loop until the user chooses to exit
+
+- End
+
+
+#Pseudocode
+START
+DEFINE event_list as an empty list
+
+FUNCTION add_event(title, date, time, description):
+    VALIDATE date and time
+    CHECK for conflicts with existing events
+    IF no conflict THEN
+        APPEND (title, date, time, description) to event_list
+        DISPLAY "Event added successfully"
+    ELSE
+        DISPLAY "Schedule conflict detected"
+
+FUNCTION display_events(filter_type, filter_value):
+    IF filter_type is "day/week/month":
+        FILTER event_list based on filter_value
+    DISPLAY filtered events
+
+FUNCTION search_event(keyword):
+    SEARCH event_list for keyword in title or description
+    DISPLAY matching events
+
+FUNCTION delete_event(title, date, time):
+    FIND event in event_list
+    IF event exists THEN
+        REMOVE event from event_list
+        DISPLAY "Event deleted successfully"
+    ELSE
+        DISPLAY "Event not found"
+
+FUNCTION modify_event(title, date, time, new_details):
+    FIND event in event_list
+    IF event exists THEN
+        UPDATE event details
+        DISPLAY "Event modified successfully"
+    ELSE
+        DISPLAY "Event not found"
+
+FUNCTION set_reminder(title, date, time, reminder_time):
+    VALIDATE reminder_time
+    SCHEDULE reminder notification
+    DISPLAY "Reminder set"
+
+LOOP
+    DISPLAY menu (Add, View, Search, Delete, Modify, Set Reminder, Exit)
+    INPUT choice
+    PERFORM corresponding function based on choice
+    IF choice == "Exit" THEN EXIT LOOP
+
+END
